@@ -18,7 +18,7 @@
                       <mat-label>Nom</mat-label>
                       <input  matInput formControlName="lastName">
                       <mat-error *ngIf="signalementForm.controls.lastName.errors?.required">renseignez votre nom svp</mat-error>
-                      <mat-error *ngIf="signalementForm.controls.firstName.errors?.maxlength">Votre nom ne peut pas dépasser 50 carcatères</mat-error>
+                      <mat-error *ngIf="signalementForm.controls.lastName.errors?.maxlength">Votre nom ne peut pas dépasser 50 carcatères</mat-error>
 
                     </mat-form-field>
                   </div></div>
