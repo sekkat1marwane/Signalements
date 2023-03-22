@@ -1,0 +1,89 @@
+<mat-card> 
+  <h1>Renseignez votre signalement</h1>
+  <form [formGroup]="signalementForm" (ngSubmit)="saveSignamlement(formDirective)" #formDirective="ngForm">
+    <div fxLayout="row">
+      <div fxFlexOffset="10" fxFlex="70">
+                      <mat-form-field appearance="fill" >
+                      <mat-label>Prénom</mat-label>
+                      <input matInput formControlName="firstName">
+                      <mat-error *ngIf="signalementForm.controls.firstName.errors?.required">renseignez  votre prénom svp</mat-error>
+                      <mat-error *ngIf="signalementForm.controls.firstName.errors?.maxlength">Votre prénom ne peut pas dépasser 50 carcatères</mat-error>
+
+                      
+                    </mat-form-field>
+                  </div></div>
+                  <div fxLayout="row">
+                    <div fxFlexOffset="10" fxFlex="70">
+                    <mat-form-field appearance="fill" >
+                      <mat-label>Nom</mat-label>
+                      <input  matInput formControlName="lastName">
+                      <mat-error *ngIf="signalementForm.controls.lastName.errors?.required">renseignez votre nom svp</mat-error>
+                      <mat-error *ngIf="signalementForm.controls.firstName.errors?.maxlength">Votre nom ne peut pas dépasser 50 carcatères</mat-error>
+
+                    </mat-form-field>
+                  </div></div>
+                  <div fxLayout="row">
+                    <div fxFlexOffset="10" fxFlex="70">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Sexe</mat-label>
+                      <mat-select formControlName="sexe" >
+                        <mat-option value="F">Féminin</mat-option>
+                        <mat-option value="M">Masculin</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="signalementForm.controls.sexe.errors?.required">Choisissez votre sexe svp</mat-error>
+                    </mat-form-field>
+                  </div></div>
+                  <div fxLayout="row">
+                    <div fxFlexOffset="10" fxFlex="70">
+                    <mat-form-field  appearance="fill">
+                      <mat-label>Choisissez une date</mat-label>
+                      <input readonly  matInput [matDatepicker]="picker" [min]="findMinDate()" [max]="findMaxDate()" formControlName="birthDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-error *ngIf="signalementForm.controls.birthDate.errors?.required">renseignez votre date de niassance svp</mat-error>
+
+                  </mat-form-field>
+                </div></div>
+                <div fxLayout="row">
+                  <div fxFlexOffset="10" fxFlex="70">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="email">
+                      <mat-error *ngIf="signalementForm.controls.email.errors?.required">renseignez votre mail svp</mat-error>
+                      <mat-error *ngIf="signalementForm.controls.email.errors?.email">renseigner un email valid svp</mat-error>
+
+                    </mat-form-field>
+                  </div></div>
+
+                  <div fxLayout="row">
+                    <div fxFlexOffset="10" fxFlex="70">
+                  <mat-form-field appearance="fill">
+                      <textarea matInput formControlName="description"></textarea>
+                      <mat-error *ngIf="signalementForm.controls.description.errors?.required">renseignez une description svp</mat-error>
+                    </mat-form-field>
+                  </div></div>
+
+                  <div fxLayout="row">
+                    <div fxFlexOffset="10" fxFlex="70">
+                       
+                    <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                         Observations
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <mat-selection-list formControlName="observations">
+                        <mat-list-option *ngFor="let observation of observations" [value]="observation">
+                          {{observation.name}}
+                        </mat-list-option>
+                      </mat-selection-list>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                  </div>
+                </div>
+
+  <button mat-stroked-button color="primary" [disabled]="!signalementForm.valid">Enregistrer</button>
+
+          </form> 
+        </mat-card>
